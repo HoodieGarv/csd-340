@@ -1,0 +1,40 @@
+/* 
+    Name: Garvin Stewart
+    Date: June 14, 2026
+    Assignment: CSD 340 – Module 3 Landing Page
+*/
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f6f8;
+    color: #1a1a2e;
+}
+
+#container {
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+h1, h2, h3, h4 {
+    background-color: #1a3a5c;
+    color: #e8f4fd;
+    border: 1px solid #D6A800;
+    padding: 10px;
+}
+
+a {
+    color: #1a5c8a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #D6A800;
+}
+
+a:visited {
+    color: #2e5c7a;
+}
