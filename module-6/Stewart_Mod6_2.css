@@ -1,0 +1,91 @@
+/* Garvin Stewart - CSD 340 - Assignment 6.2: Build a Web Page - Part 5 */
+
+/* ---------- HEADER ---------- */
+header {
+  background-color: #b5451b;   /* rust/terracotta, matches navbar so the two read as one band */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 400;            /* lighter weight than the browser's bold default h1 */
+}
+
+/* ---------- NAVBAR ---------- */
+#navbar {
+  overflow: hidden;                    /* clears the floated <a> children so the div doesn't collapse to 0 height */
+  background-color: #b5451b;
+  border-bottom: 15px solid #9ba05c;   /* olive accent bar under the nav */
+}
+
+#navbar a {
+  float: left;              /* lines the links up horizontally left-to-right */
+  display: block;           /* lets padding/width apply the same as a box, not just an inline run of text */
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;    /* removes the default link underline */
+}
+
+#navbar a:hover {
+  background-color: #7d8247;  /* darker olive on hover, ties back to the border color */
+  color: white;
+}
+
+/* ---------- CONTAINER ---------- */
+#container {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 10px;
+  padding-bottom: 60px;   /* reserves space so the absolutely positioned footer doesn't sit on top of short content */
+}
+
+/* ---------- CARD ---------- */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;         /* animates the box-shadow change on hover instead of snapping instantly */
+  width: 50%;
+  background-color: #ffffff;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);  /* larger, softer shadow = the card looks "lifted" */
+}
+
+.card-title {
+  text-align: center;
+  font-size: 2em;
+  color: #b5451b;
+  font-weight: 400;
+}
+
+.card-content {
+  padding: 2px 16px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: #b5451b;   /* same as header, ties the top and bottom bands together */
+  position: absolute;          /* pulled out of normal flow so it can be pinned... */
+  bottom: 0;                   /* ...to the bottom of its positioned ancestor (the html/body block) */
+  width: 100%;
+}
+
+footer p {
+  color: white;
+  font-weight: 400;
+  float: right;
+  padding-right: 10px;
+  font-style: italic;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
