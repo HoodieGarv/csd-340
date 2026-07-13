@@ -1,0 +1,118 @@
+/* Garvin Stewart - CSD 340 - Assignment 8.2: Build a Web Page - Part 6 */
+
+/* ---------- HEADER ---------- */
+header {
+  background-color: #b5451b;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+/* ---------- NAVBAR ---------- */
+#navbar {
+  overflow: hidden;
+  background-color: #b5451b;
+  border-bottom: 15px solid #9ba05c;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  background-color: #7d8247;
+  color: white;
+}
+
+/* ---------- CONTAINER ---------- */
+#container {
+  margin: 2% 5% 100px 5%;  /* shorthand: top 2%, right 5%, bottom 100px, left 5% */
+  padding: 10px;
+}
+
+/* ---------- CARD ---------- */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 50%;
+  background-color: #ffffff;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  text-align: center;
+  font-size: 2em;
+  color: #b5451b;
+  font-weight: 400;
+}
+
+.card-content {
+  padding: 2px 16px;
+}
+
+/* ---------- MOVIES TABLE ---------- */
+#movies {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#movies th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #b5451b;  /* not in the literal spec list, but the assignment's own screenshot shows a colored header band matching the site palette; added to match the visual example */
+  color: white;
+}
+
+#movies td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: #b5451b;
+  position: fixed;   /* changed from absolute per spec */
+  bottom: 0;
+  left: 0;            /* new per spec */
+  width: 100%;
+}
+
+footer p {
+  color: white;
+  font-weight: 400;
+  float: right;
+  padding-right: 10px;
+  font-style: italic;
+}
+
+footer .copyright {
+  /* Not in the literal spec (which only names one footer <p>). The existing "footer p" rule
+     floats right for the back-link text; this class overrides that so the copyright line
+     sits left-aligned as instructed, without disturbing the back-link styling. */
+  float: left;
+  padding-left: 10px;
+  padding-right: 0;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
