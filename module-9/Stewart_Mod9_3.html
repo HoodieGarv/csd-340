@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Stewart
+    Assignment 9.3
+-->
+
+<head>
+    <title>CSD 340 Web Development with HTML and CSS</title>
+    <script>
+        var firstVariableValue = "aerial";
+        var secondVariableValue = "freedom";
+        var thirdVariableValue = "annihilation";
+        var fourthVariableValue = "survive";
+    </script>
+</head>
+
+<body>
+
+    <h1>Assignment 9.3: JavaScript - Part 1</h1>
+
+    <p> President Whitmore's Speech </p>
+
+    <p> Good morning. Good morning. In less than an hour aircrafts from here will join others from around the world and you will be launching the largest <span id="aerial">__________</span> battle in the history of mankind. That word should have new meaning for all of us today. We can't be consumed by our petty differences anymore. We will be united in our common interest, perhaps space. Today's the Fourth of July and you will once again be fighting for our <span id="freedom">__________</span>.</p>
+
+    <p> Not from tyranny, oppression of persecution. But from <span id="annihilation">__________</span>. We're fighting for our right to live. And should we win the day? The Fourth of July will no longer be known as an American holiday. But as the day when the world declared in one voice, we will not go quietly into the night. We will not vanish without a fight. We're going to <span id="survive">__________</span>. Today, we celebrate our Independence Day!</p>
+
+    <p>
+        <button type="button"
+            onclick="document.getElementById('aerial').textContent = firstVariableValue">aerial</button>
+        <button type="button"
+            onclick="document.getElementById('freedom').textContent = secondVariableValue">freedom</button>
+        <button type="button"
+            onclick="document.getElementById('annihilation').textContent = thirdVariableValue">annihilation</button>
+        <button type="button"
+            onclick="document.getElementById('survive').textContent = fourthVariableValue">survive</button>
+        <br />
+    </p>
+
+</body>
+
+</html>
