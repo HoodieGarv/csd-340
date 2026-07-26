@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+    Name: Garvin Stewart
+    Date: July 26, 2026
+    Assignment: CSD 340 - Module 10.3 - JavaScript - Part 2
+    Purpose: Clicking a thumbnail swaps the main display image, using the onclick MouseEvent.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSD 340 Web Development with HTML and CSS</title>
+
+    <script>
+      // Runs on click. Swaps the src of the main display image
+      // to the file passed in from whichever thumbnail was clicked.
+      function displayImage(imageFile) {
+        var mainImage = document.getElementById("mainImage");
+        mainImage.src = imageFile;
+      }
+    </script>
+
+    <style>
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #f4f6f8;
+        color: #1a1a2e;
+      }
+
+      #container {
+        margin-top: 50px;
+        margin-left: 100px;
+        margin-right: 100px;
+      }
+
+      h1 {
+        background-color: #1a3a5c;
+        color: #e8f4fd;
+        border: 1px solid #D6A800;
+        padding: 10px;
+      }
+
+      #gallery {
+        margin-top: 30px;
+      }
+
+      #main-display {
+        width: 400px;
+        height: 500px;
+        background-color: #0d0d0d;
+        border: 2px solid #1a3a5c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      #main-display img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #thumbnails {
+        margin-top: 15px;
+      }
+
+      #thumbnails img {
+        width: 90px;
+        height: 120px;
+        object-fit: contain;
+        background-color: #0d0d0d;
+        margin-right: 10px;
+        border: 2px solid #1a3a5c;
+        cursor: pointer;
+      }
+
+      #thumbnails img:hover {
+        border-color: #D6A800;
+      }
+
+      #instructions {
+        font-style: italic;
+      }
+
+      #bottom-div {
+        width: 100%;
+        margin-top: 40px;
+      }
+
+      #bottom-div a {
+        float: right;
+        color: #1a5c8a;
+        text-decoration: none;
+      }
+
+      #bottom-div a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>Assignment 10.3: JavaScript - Part 2</h1>
+
+      <p id="instructions">Click a thumbnail below to display it as the main photo.</p>
+
+      <div id="gallery">
+        <div id="main-display">
+          <img id="mainImage" src="photo_01.jpg" alt="Selected photo" />
+        </div>
+
+        <div id="thumbnails">
+          <img src="photo_01.jpg" alt="Thumbnail 1" onclick="displayImage('photo_01.jpg');" />
+          <img src="photo_02.jpg" alt="Thumbnail 2" onclick="displayImage('photo_02.jpg');" />
+          <img src="photo_03.jpg" alt="Thumbnail 3" onclick="displayImage('photo_03.jpg');" />
+          <img src="photo_04.jpg" alt="Thumbnail 4" onclick="displayImage('photo_04.jpg');" />
+        </div>
+      </div>
+
+      <div id="bottom-div">
+        <a href="../index.html">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
