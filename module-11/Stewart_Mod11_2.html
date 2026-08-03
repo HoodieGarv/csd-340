@@ -1,0 +1,270 @@
+<!--
+  Name: Garvin Stewart
+  Date: Aug 1, 2026
+  Assignment: CSD 340 - Module 11.2, JavaScript Part 3
+  Purpose: To-do list page demonstrating array add/delete/sort operations in JavaScript.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSD 340 Web Development with HTML and CSS</title>
+<style>
+  :root {
+    --surgical-green: #0b7a4b;
+    --surgical-green-dark: #095f3b;
+    --stainless: #8a949c;
+    --stainless-light: #eef1f3;
+    --stainless-dark: #4a545c;
+    --ink: #1f2933;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 40px 16px;
+    background: var(--stainless-light);
+    font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+  }
+
+  main {
+    width: 100%;
+    max-width: 560px;
+    background: #ffffff;
+    border: 1px solid #dde2e5;
+    border-top: 4px solid var(--surgical-green);
+    border-radius: 6px;
+    padding: 32px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: 1.5rem;
+    color: var(--stainless-dark);
+  }
+
+  p.instructions {
+    margin: 0 0 24px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--stainless-dark);
+  }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--stainless-dark);
+    margin-bottom: 6px;
+  }
+
+  input[type="text"], select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #c7ced2;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  input[type="text"]:focus, select:focus, button:focus {
+    outline: 2px solid var(--surgical-green);
+    outline-offset: 1px;
+  }
+
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  button {
+    flex: 1 1 auto;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 4px;
+    background: var(--surgical-green);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  button:hover {
+    background: var(--surgical-green-dark);
+  }
+
+  button.secondary {
+    background: var(--stainless-dark);
+  }
+
+  button.secondary:hover {
+    background: #333b41;
+  }
+
+  h2 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--stainless-dark);
+    margin: 0 0 10px;
+  }
+
+  #taskList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #taskList li {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eceff1;
+    font-size: 0.95rem;
+  }
+
+  #taskList li:last-child {
+    border-bottom: none;
+  }
+
+  #taskList:empty::after {
+    content: "No tasks yet — add one above.";
+    display: block;
+    padding: 10px 12px;
+    color: var(--stainless);
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <h1>Assignment 11.2: JavaScript - Part 3</h1>
+  <p class="instructions">
+    Enter a task below and click "Add" to add the task to the list. Click "Delete Last Entry" to
+    remove the last entered item. Click "Delete Selected Item" to delete the item chosen in the
+    drop-down. Click "Sort" to sort the items in the list.
+  </p>
+
+  <label for="taskInput">Task</label>
+  <input type="text" id="taskInput" placeholder="Enter a task...">
+
+  <label for="taskSelect">Delete a specific item</label>
+  <select id="taskSelect">
+    <option value="-1">-- Select item to delete --</option>
+  </select>
+
+  <div class="button-row">
+    <button onclick="addTask()">Add</button>
+    <button class="secondary" onclick="deleteLastEntry()">Delete Last Entry</button>
+    <button class="secondary" onclick="deleteSelectedItem()">Delete Selected Item</button>
+    <button onclick="sortTasks()">Sort</button>
+  </div>
+
+  <h2>Things To Do</h2>
+  <ul id="taskList"></ul>
+</main>
+
+<script>
+  // Name: [Your Name]
+  // Date: [Assignment Due Date]
+  // Assignment: CSD 340 - Module 11.2, JavaScript Part 3
+  // Purpose: Manage a to-do list array (add, delete last, delete selected, sort, display).
+
+  // The array that stores every to-do item.
+  let tasks = [];
+
+  // Adds the text box value to the tasks array.
+  function addTask() {
+    const input = document.getElementById('taskInput');
+    const value = input.value.trim();
+
+    if (value === '') {
+      alert('Please enter a task before clicking Add.');
+      return;
+    }
+
+    tasks.push(value);
+    alert('Added to your list: "' + value + '"');
+
+    input.value = '';
+    input.focus();
+    displayTasks();
+  }
+
+  // Removes the most recently added item from the tasks array.
+  function deleteLastEntry() {
+    if (tasks.length === 0) {
+      alert('There are no tasks to delete.');
+      return;
+    }
+
+    const removed = tasks.pop();
+    alert('Deleted last entry: "' + removed + '"');
+    displayTasks();
+  }
+
+  // Optional feature: removes whichever item is chosen in the drop-down.
+  function deleteSelectedItem() {
+    const select = document.getElementById('taskSelect');
+    const index = parseInt(select.value, 10);
+
+    if (isNaN(index) || index < 0) {
+      alert('Please select an item from the drop-down first.');
+      return;
+    }
+
+    const removed = tasks.splice(index, 1)[0];
+    alert('Deleted selected item: "' + removed + '"');
+    displayTasks();
+  }
+
+  // Sorts the tasks array alphabetically.
+  function sortTasks() {
+    if (tasks.length === 0) {
+      alert('There are no tasks to sort yet.');
+      return;
+    }
+
+    tasks.sort();
+    alert('The list has been sorted.');
+    displayTasks();
+  }
+
+  // Renders the current contents of the tasks array to the page,
+  // and rebuilds the delete-selection drop-down to match.
+  function displayTasks() {
+    const list = document.getElementById('taskList');
+    list.innerHTML = '';
+
+    tasks.forEach(function (task) {
+      const li = document.createElement('li');
+      li.textContent = task;
+      list.appendChild(li);
+    });
+
+    const select = document.getElementById('taskSelect');
+    select.innerHTML = '<option value="-1">-- Select item to delete --</option>';
+
+    tasks.forEach(function (task, index) {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = task;
+      select.appendChild(option);
+    });
+  }
+</script>
+
+</body>
+</html>
